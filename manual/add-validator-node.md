@@ -84,7 +84,7 @@ ignite chain build
 
 ```sh
 uclid init validator-3 --chain-id uclid-devnet
-curl -O <genesis_file_url> -o ~/.uclid/config/genesis.json
+curl -O <genesis_file_url> -o ~/.ucli/config/genesis.json
 ```
 
 #### 3. 키 추가 및 계정 주소 조회
@@ -145,13 +145,13 @@ uclid tx staking create-validator ./staking.json --from=validator-3 --keyring-ba
 
 #### 6. 설정 파일 수정
 
-**새로운 노드의 `app.toml` 파일 (`~/.uclid/config/app.toml`):**
+**새로운 노드의 `app.toml` 파일 (`~/.ucli/config/app.toml`):**
 
 ```toml
 minimum-gas-prices = "0.01ucli"
 ```
 
-**새로운 노드의 `config.toml` 파일 (`~/.uclid/config/config.toml`):**
+**새로운 노드의 `config.toml` 파일 (`~/.ucli/config/config.toml`):**
 
 ```toml
 [rpc]

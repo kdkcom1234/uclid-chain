@@ -201,7 +201,7 @@ uclid genesis add-genesis-account $validator_node_address 20000000000000ucli --k
 
 ```sh
 cd <genesis-repo-root>
-cp ~/.uclid/config/genesis.json ./genesis.json
+cp ~/.ucli/config/genesis.json ./genesis.json
 git add genesis.json
 git commit -m "Add modified genesis.json"
 git push origin main
@@ -266,7 +266,7 @@ Coordinator Node는 Validator Node의 `gentx` 파일을 가져옵니다:
 ```sh
 cd <genesis-repo-root>
 git pull origin main
-cp ./gentx-validator-node.json ~/.uclid/config/gentx/
+cp ./gentx-validator-node.json ~/.ucli/config/gentx/
 ```
 
 #### 10. `collect-gentxs` 실행
@@ -288,7 +288,7 @@ uclid genesis collect-gentxs
 **Coordinator Node:**
 
 ```sh
-sed -i 's/"stake"/"ucli"/g' ~/.uclid/config/genesis.json
+sed -i 's/"stake"/"ucli"/g' ~/.ucli/config/genesis.json
 ```
 
 #### 12. 최신 제네시스 파일 공유
@@ -301,7 +301,7 @@ sed -i 's/"stake"/"ucli"/g' ~/.uclid/config/genesis.json
 
 ```sh
 cd <genesis-repo-root>
-cp ~/.uclid/config/genesis.json ./genesis.json
+cp ~/.ucli/config/genesis.json ./genesis.json
 git add genesis.json
 git commit -m "Update genesis.json with new validators"
 git push origin main
@@ -314,7 +314,7 @@ git push origin main
 ```sh
 cd <genesis-repo-root>
 git pull origin main
-cp ./genesis.json ~/.uclid/config/genesis.json
+cp ./genesis.json ~/.ucli/config/genesis.json
 ```
 
 #### 13. Node ID 및 Peer 정보 확인 및 공유
@@ -363,13 +363,13 @@ node1_info=$(cat node1-info.txt)
 
 #### 14. 설정 파일 편집
 
-각 노드의 설정 파일을 편집합니다 (`~/.uclid/config/config.toml` 및 `~/.uclid/config/app.toml`).
+각 노드의 설정 파일을 편집합니다 (`~/.ucli/config/config.toml` 및 `~/.ucli/config/app.toml`).
 
 ##### Coordinator Node의 RPC 설정 변경
 
 Coordinator Node에서 RPC가 외부에서 접속할 수 있도록 `config.toml` 파일을 수정합니다.
 
-**Coordinator Node의 설정 파일 (`~/.uclid/config/config.toml`):**
+**Coordinator Node의 설정 파일 (`~/.ucli/config/config.toml`):**
 
 ```toml
 [rpc]
@@ -380,13 +380,13 @@ laddr = "tcp://0.0.0.0:26657"
 
 각 노드가 서로 연결될 수 있도록 `persistent_peers`를 설정합니다.
 
-**Coordinator Node의 설정 파일 (`~/.uclid/config/config.toml`):**
+**Coordinator Node의 설정 파일 (`~/.ucli/config/config.toml`):**
 
 ```toml
 persistent_peers = "$node2_info"
 ```
 
-**Validator Node의 설정 파일 (`~/.uclid/config/config.toml`):**
+**Validator Node의 설정 파일 (`~/.ucli/config/config.toml`):**
 
 ```toml
 persistent_peers = "$node1_info"
@@ -396,7 +396,7 @@ persistent_peers = "$node1_info"
 
 `app.toml` 파일에서 최소 가스 가격을 설정합니다.
 
-**각 노드의 `app.toml` 파일 (`~/.uclid/config/app.toml`):**
+**각 노드의 `app.toml` 파일 (`~/.ucli/config/app.toml`):**
 
 ```toml
 minimum-gas-prices = "0.01ucli"

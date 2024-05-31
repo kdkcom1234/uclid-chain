@@ -26,11 +26,12 @@ accounts:
 genesis:
   chain_id: uclid-devnet
   app_state:
-    auth:
-      params:
-        tx_size_cost_per_byte: "1"
-        sig_verify_cost_ed25519: "59"
-        sig_verify_cost_secp256k1: "100"
+    # devnet
+    # auth:
+    #   params:
+    #     tx_size_cost_per_byte: "1"
+    #     sig_verify_cost_ed25519: "59"
+    #     sig_verify_cost_secp256k1: "100"
     mint:
       params:
         mint_denom: ucli
@@ -54,14 +55,15 @@ validators:
     bonded: 100000000ucli
     config:
       moniker: uclid-devnet-validator-1
+    # devnet
+    # consensus:
+    #   timeout_propose = "200ms"
+    #   timeout_propose_delta = "100ms"
+    #   timeout_prevote = "100ms"
+    #   timeout_prevote_delta = "50ms"
+    #   timeout_precommit = "100ms"
+    #   timeout_precommit_delta = "50ms"
+    #   timeout_commit = "300ms"
 client:
   typescript:
     path: ../uclid-tsclient
-# config.toml
-# timeout_propose = "200ms"
-# timeout_propose_delta = "100ms"
-# timeout_prevote = "100ms"
-# timeout_prevote_delta = "50ms"
-# timeout_precommit = "100ms"
-# timeout_precommit_delta = "50ms"
-# timeout_commit = "300ms"
