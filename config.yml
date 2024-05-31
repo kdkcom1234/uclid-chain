@@ -59,13 +59,14 @@ validators:
       moniker: uclid-devnet-validator-1
     # devnet
     # consensus:
-    #   timeout_propose = "200ms"
-    #   timeout_propose_delta = "100ms"
-    #   timeout_prevote = "100ms"
-    #   timeout_prevote_delta = "50ms"
-    #   timeout_precommit = "100ms"
-    #   timeout_precommit_delta = "50ms"
-    #   timeout_commit = "300ms"
+    # timeout_propose = "3s"           # 블록 제안 시간 초과: 3초
+    # timeout_propose_delta = "500ms"  # 각 라운드에서 제안 시간 증가량: 500ms
+    # timeout_prevote = "1s"           # Pre-vote 단계 시간 초과: 1초
+    # timeout_prevote_delta = "500ms"  # 각 라운드에서 Pre-vote 시간 증가량: 500ms
+    # timeout_precommit = "1s"         # Pre-commit 단계 시간 초과: 1초
+    # timeout_precommit_delta = "500ms" # 각 라운드에서 Pre-commit 시간 증가량: 500ms
+    # timeout_commit = "3s"            # Commit 단계 시간 초과: 3초
+
 client:
   typescript:
     path: ../uclid-tsclient
