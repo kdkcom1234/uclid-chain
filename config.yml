@@ -35,6 +35,8 @@ genesis:
     mint:
       params:
         mint_denom: ucli
+        # devnet
+        # blocks_per_year: "52596000"
     staking:
       params:
         bond_denom: ucli
