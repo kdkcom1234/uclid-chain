@@ -1,22 +1,67 @@
-version: 1
 validation: sovereign
-accounts: 
-- name: alice
-  coins:
-  - 20000token
-  - 200000000stake
-- name: bob
-  coins:
-  - 10000token
-  - 100000000stake
-client:
-  openapi:
-    path: docs/static/openapi.yml
-faucet:
-  name: bob
-  coins:
-  - 5token
-  - 100000stake
+version: 1
+accounts:
+  - name: validator-1
+    coins:
+      - 200000000ucli
+    mnemonic: advice farm scrap basket knock wish tattoo order dog arrange obey metal day romance drift busy short chronic impulse keen kiwi lawn answer short
+    # uclid12wckjswyzq3k0tljg9tfntf9mwu8y2law67k08
+
+  - name: validator-2
+    coins:
+      - 200000000ucli
+    mnemonic: margin junior alert vacuum foam judge sock danger thunder trophy awake unusual illegal wife dinner good knock model refuse pyramid edit tone utility garment
+    # uclid1l54ta4t7gdw7mc35cgd0tsemcrt8wqmndzcnz3
+
+  - name: validator-3
+    coins:
+      - 200000000ucli
+    mnemonic: split main actress student paddle rubber promote service program rule reduce wink candy make moral riot demise height retreat jealous zone chunk code emerge
+    # uclid1aprp3kg8fxu0v86zag2f9ptnlspjz0rcfwkhy2
+  - name: faucet
+    coins:
+      - 200000000ucli
+    mnemonic: upgrade weekend letter main drink mail elbow sausage wild pistol journey attract focus permit acoustic gap decade sound clump brand great range fine round
+    # uclid1z8hm4ux2mh85dn8a9kz900jdv855a4vp6dl3kd
+genesis:
+  chain_id: uclid-devnet
+  app_state:
+    auth:
+      params:
+        tx_size_cost_per_byte: "1"
+        sig_verify_cost_ed25519: "59"
+        sig_verify_cost_secp256k1: "100"
+    mint:
+      params:
+        mint_denom: ucli
+    staking:
+      params:
+        bond_denom: ucli
+    gov:
+      params:
+        expedited_min_deposit:
+          - amount: "20000000"
+            denom: ucli
+        min_deposit:
+          - amount: "10000000"
+            denom: ucli
+    crisis:
+      constant_fee:
+        amount: "10000000"
+        denom: ucli
 validators:
-- name: alice
-  bonded: 100000000stake
+  - name: validator-1
+    bonded: 100000000ucli
+    config:
+      moniker: uclid-devnet-validator-1
+client:
+  typescript:
+    path: ../uclid-tsclient
+# config.toml
+# timeout_propose = "200ms"
+# timeout_propose_delta = "100ms"
+# timeout_prevote = "100ms"
+# timeout_prevote_delta = "50ms"
+# timeout_precommit = "100ms"
+# timeout_precommit_delta = "50ms"
+# timeout_commit = "300ms"
