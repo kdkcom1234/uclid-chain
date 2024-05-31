@@ -399,7 +399,7 @@ persistent_peers = "$node1_info"
 **각 노드의 `app.toml` 파일 (`~/.ucli/config/app.toml`):**
 
 ```toml
-minimum-gas-prices = "0.01ucli"
+minimum-gas-prices = "1ucli"
 ```
 
 #### 15. 노드 실행
