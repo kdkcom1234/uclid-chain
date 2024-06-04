@@ -374,6 +374,7 @@ Coordinator Node에서 RPC 및 API가 외부에서 접속할 수 있도록 `conf
 ```toml
 [rpc]
 laddr = "tcp://0.0.0.0:26657"
+cors_allowd_orgins = ["*"]
 ```
 
 **Coordinator Node의 설정 파일 (`~/.ucli/config/app.toml`):**
