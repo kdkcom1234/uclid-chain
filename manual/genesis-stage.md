@@ -365,15 +365,25 @@ node1_info=$(cat node1-info.txt)
 
 각 노드의 설정 파일을 편집합니다 (`~/.ucli/config/config.toml` 및 `~/.ucli/config/app.toml`).
 
-##### Coordinator Node의 RPC 설정 변경
+##### Coordinator Node의 RPC, API 설정 변경
 
-Coordinator Node에서 RPC가 외부에서 접속할 수 있도록 `config.toml` 파일을 수정합니다.
+Coordinator Node에서 RPC 및 API가 외부에서 접속할 수 있도록 `config.toml, app.toml` 파일을 수정합니다.
 
 **Coordinator Node의 설정 파일 (`~/.ucli/config/config.toml`):**
 
 ```toml
 [rpc]
 laddr = "tcp://0.0.0.0:26657"
+```
+
+**Coordinator Node의 설정 파일 (`~/.ucli/config/app.toml`):**
+
+```toml
+[api]
+enable = true
+address = "tcp://0.0.0.0:1317"
+enabled-unsafe-cors = true
+
 ```
 
 ##### Persistent Peers 설정
