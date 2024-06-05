@@ -187,8 +187,8 @@ Coordinator Node에서 제네시스 파일을 수정하여 두 노드의 초기 
 **Coordinator Node:**
 
 ```sh
-uclid genesis add-genesis-account coordinator-node 20000000000000ucli --keyring-backend file
-uclid genesis add-genesis-account $validator_node_address 20000000000000ucli
+uclid genesis add-genesis-account coordinator-node 30000000000000ucli --keyring-backend file
+uclid genesis add-genesis-account $validator_node_address 30000000000000ucli
 ```
 
 #### 6. 수정된 제네시스 파일 공유
@@ -236,13 +236,13 @@ cat ~/.ucli/config/genesis.json
 **Coordinator Node:**
 
 ```sh
-uclid genesis gentx coordinator-node 10000000000000ucli --chain-id uclid-prenet --keyring-backend file
+uclid genesis gentx coordinator-node 20000000000000ucli --chain-id uclid-prenet --keyring-backend file
 ```
 
 **Validator Node:**
 
 ```sh
-uclid genesis gentx validator-node 10000000000000ucli --chain-id uclid-prenet --keyring-backend file
+uclid genesis gentx validator-node 20000000000000ucli --chain-id uclid-prenet --keyring-backend file
 ```
 
 #### 9. `gentx` 파일 공유
