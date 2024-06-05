@@ -24,9 +24,9 @@ accounts:
     mnemonic: upgrade weekend letter main drink mail elbow sausage wild pistol journey attract focus permit acoustic gap decade sound clump brand great range fine round
     # uclid1z8hm4ux2mh85dn8a9kz900jdv855a4vp6dl3kd
 genesis:
-  chain_id: uclid-devnet
+  chain_id: uclid-prenet
   app_state:
-    # devnet
+    # prenet
     # auth:
     #   params:
     #     tx_size_cost_per_byte: "1"
@@ -35,8 +35,8 @@ genesis:
     mint:
       params:
         mint_denom: ucli
-        # devnet
-        # blocks_per_year: "52596000"
+        # prenet
+        # blocks_per_year: "10512000"
     staking:
       params:
         bond_denom: ucli
@@ -56,8 +56,8 @@ validators:
   - name: validator-1
     bonded: 100000000ucli
     config:
-      moniker: uclid-devnet-validator-1
-    # devnet
+      moniker: uclid-prenet-validator-1
+    # prenet
     # consensus:
     # timeout_propose = "3s"           # 블록 제안 시간 초과: 3초
     # timeout_propose_delta = "500ms"  # 각 라운드에서 제안 시간 증가량: 500ms
