@@ -57,7 +57,7 @@ genesis:
     staking:
       params:
         bond_denom: ucli
-        unbonding_time: "157680000000000000"
+        unbonding_time: "157680000s"
 
     gov:
       params:
