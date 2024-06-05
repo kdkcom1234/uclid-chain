@@ -1,71 +1,101 @@
 validation: sovereign
 version: 1
+
+# mnemoic only local development
 accounts:
   - name: validator-1
     coins:
-      - 200000000ucli
+      - 30000000000000ucli
     mnemonic: advice farm scrap basket knock wish tattoo order dog arrange obey metal day romance drift busy short chronic impulse keen kiwi lawn answer short
     # uclid12wckjswyzq3k0tljg9tfntf9mwu8y2law67k08
-
   - name: validator-2
     coins:
-      - 200000000ucli
+      - 30000000000000ucli
     mnemonic: margin junior alert vacuum foam judge sock danger thunder trophy awake unusual illegal wife dinner good knock model refuse pyramid edit tone utility garment
     # uclid1l54ta4t7gdw7mc35cgd0tsemcrt8wqmndzcnz3
-
   - name: validator-3
     coins:
-      - 200000000ucli
+      - 30000000000000ucli
     mnemonic: split main actress student paddle rubber promote service program rule reduce wink candy make moral riot demise height retreat jealous zone chunk code emerge
     # uclid1aprp3kg8fxu0v86zag2f9ptnlspjz0rcfwkhy2
   - name: faucet
     coins:
-      - 200000000ucli
+      - 10000000000000ucli
     mnemonic: upgrade weekend letter main drink mail elbow sausage wild pistol journey attract focus permit acoustic gap decade sound clump brand great range fine round
     # uclid1z8hm4ux2mh85dn8a9kz900jdv855a4vp6dl3kd
+  # for prove node purchase
+  - name: nexus
+    coins:
+      # 1,000,000,000 CLI
+      - 1000000000000000ucli
+    mnemonic: frost same response private best shop sea unusual crazy beyond behind spray latin cotton traffic erosion hello rate actual swarm lab harvest village fiction
 genesis:
   chain_id: uclid-prenet
   app_state:
-    # prenet
-    # auth:
-    #   params:
-    #     tx_size_cost_per_byte: "1"
-    #     sig_verify_cost_ed25519: "59"
-    #     sig_verify_cost_secp256k1: "100"
+    # prenet, gas cost
+    auth:
+      params:
+        tx_size_cost_per_byte: "1"
+        sig_verify_cost_ed25519: "59"
+        sig_verify_cost_secp256k1: "100"
+
     mint:
+      minter:
+        # prenet, inflation rate 6%
+        inflation: "0.060000000000000000"
+        annual_provisions: "0.000000000000000000"
       params:
         mint_denom: ucli
-        # prenet
-        # blocks_per_year: "10512000"
+        # prenet, block_time 3s
+        blocks_per_year: "10512000"
+        # prenet, fixed rate inflation
+        inflation_rate_change: "0.000000000000000000"
+        # prenet, inflation rate 6%, goal 30% staking
+        inflation_max: "0.060000000000000000"
+        inflation_min: "0.060000000000000000"
+        goal_bonded: "0.300000000000000000"
     staking:
       params:
         bond_denom: ucli
+
     gov:
       params:
         expedited_min_deposit:
-          - amount: "20000000"
+          # prenet, expedited min gov fee -> prove node price * 2
+          - amount: "70000000000"
             denom: ucli
+        # prenet, min gov fee -> prove node price
         min_deposit:
-          - amount: "10000000"
+          - amount: "35000000000"
             denom: ucli
+    # prenet, min crysis fee -> prove node price
     crisis:
       constant_fee:
-        amount: "10000000"
+        amount: "35000000000"
         denom: ucli
 validators:
   - name: validator-1
     bonded: 100000000ucli
+    app:
+      minimum-gas-prices: 1ucli
+      api:
+        enable: true
+        swagger: false
+        address: "tcp://0.0.0.0:1317"
+        enabled-unsafe-cors: true
     config:
-      moniker: uclid-prenet-validator-1
-    # prenet
-    # consensus:
-    # timeout_propose = "3s"           # 블록 제안 시간 초과: 3초
-    # timeout_propose_delta = "500ms"  # 각 라운드에서 제안 시간 증가량: 500ms
-    # timeout_prevote = "1s"           # Pre-vote 단계 시간 초과: 1초
-    # timeout_prevote_delta = "500ms"  # 각 라운드에서 Pre-vote 시간 증가량: 500ms
-    # timeout_precommit = "1s"         # Pre-commit 단계 시간 초과: 1초
-    # timeout_precommit_delta = "500ms" # 각 라운드에서 Pre-commit 시간 증가량: 500ms
-    # timeout_commit = "3s"            # Commit 단계 시간 초과: 3초
+      moniker: validator-1
+      rpc:
+        laddr: "tcp://0.0.0.0:26657"
+      # prenet, default block time 3s
+      consensus:
+        timeout_propose: "3s"
+        timeout_propose_delta: "500ms"
+        timeout_prevote: "1s"
+        timeout_prevote_delta: "500ms"
+        timeout_precommit: "1s"
+        timeout_precommit_delta: "500ms"
+        timeout_commit: "3s"
 
 client:
   typescript:
