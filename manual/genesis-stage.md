@@ -236,7 +236,7 @@ cat ~/.ucli/config/genesis.json
 **Coordinator Node:**
 
 ```sh
-uclid genesis gentx coordinator-node 20000000000000ucli --chain-id uclid-prenet --keyring-backend file
+uclid genesis gentx coordinator-node 20000000000000ucli --chain-id uclid-prenet --keyring-backend file --commission-max-change-rate 0.000000000000000000 --commission-max-rate 0.000000000000000000 --commission-rate 0.000000000000000000
 ```
 
 **Validator Node:**
