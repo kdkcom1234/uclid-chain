@@ -29,13 +29,13 @@ curl https://get.ignite.com/cli! | bash
 ### 전체 과정 요약
 
 1. 소스코드 다운로드 및 빌드 (`git clone <repository_url>` -> `cd <repository_directory>` -> `ignite chain build`)
-2. 노드 초기화 및 `genesis.json` 적용 (`uclid init validator-3 --chain-id uclid-devnet` -> `curl -O <genesis_file_url> -o ~/.ucli/config/genesis.json`)
+2. 노드 초기화 및 `genesis.json` 적용 (`uclid init validator-3 --chain-id uclid-prenet` -> `curl -O <genesis_file_url> -o ~/.ucli/config/genesis.json`)
 3. 키 추가 및 계정 주소 조회 (`uclid keys add validator-3 --keyring-backend file` -> `uclid keys show validator-3 --keyring-backend file -a`)
 4. 코인 구매 및 계정에 전송 (코인을 구매하여 전송하거나 기존 밸리데이터 노드에서 전송, `--fees 200000ucli` 추가)
 5. 스테이킹 트랜잭션 생성 및 전송
    - `uclid comet show-validator`를 사용하여 `pubkey` 값을 조회
    - `staking.json` 파일 생성
-   - `uclid tx staking create-validator ./staking.json --from=validator-3 --keyring-backend=file --chain-id=uclid-devnet --node tcp://<your.other.nodes.ipaddress>:26657 --fees 200000ucli`
+   - `uclid tx staking create-validator ./staking.json --from=validator-3 --keyring-backend=file --chain-id=uclid-prenet --node tcp://<your.other.nodes.ipaddress>:26657 --fees 200000ucli`
 6. 설정 파일 수정 (`app.toml` 및 `config.toml` 수정)
 7. 노드 상태 초기화 (`uclid comet unsafe-reset-all`)
 8. 노드 실행 및 동기화 (`uclid start`)
@@ -83,7 +83,7 @@ ignite chain build
 새로운 노드에서 초기화하고 `genesis.json` 파일을 받아 적용합니다.
 
 ```sh
-uclid init validator-3 --chain-id uclid-devnet
+uclid init validator-3 --chain-id uclid-prenet
 curl -O <genesis_file_url> -o ~/.ucli/config/genesis.json
 ```
 
@@ -101,7 +101,7 @@ uclid keys show validator-3 --keyring-backend file -a
 코인을 구매하여 전송하거나 기존 밸리데이터 노드에서 새로운 노드의 계정으로 코인을 전송합니다.
 
 ```sh
-uclid tx bank send validator-1 <validator-3_address> 5000000000000ucli --chain-id uclid-devnet --keyring-backend file --fees 200000ucli
+uclid tx bank send validator-1 <validator-3_address> 5000000000000ucli --chain-id uclid-prenet --keyring-backend file --fees 200000ucli
 ```
 
 #### 5. 스테이킹 트랜잭션 생성 및 전송
@@ -140,7 +140,7 @@ uclid comet show-validator
 `staking.json` 파일을 생성한 후, 트랜잭션을 생성하고 다른 노드의 RPC로 전송합니다.
 
 ```sh
-uclid tx staking create-validator ./staking.json --from=validator-3 --keyring-backend=file --chain-id=uclid-devnet --node tcp://<your.other.nodes.ipaddress>:26657 --fees 200000ucli
+uclid tx staking create-validator ./staking.json --from=validator-3 --keyring-backend=file --chain-id=uclid-prenet --node tcp://<your.other.nodes.ipaddress>:26657 --fees 200000ucli
 ```
 
 #### 6. 설정 파일 수정

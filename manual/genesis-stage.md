@@ -30,14 +30,14 @@ curl https://get.ignite.com/cli! | bash
 
 1. 소스 코드 받기 (`git clone <source-code-repo-url>`)
 2. 실행 파일 생성 (`ignite chain build`)
-3. 노드 초기화 (`uclid init <moniker> --chain-id uclid-devnet`)
+3. 노드 초기화 (`uclid init <moniker> --chain-id uclid-prenet`)
 4. 키 추가 (`uclid keys add <validator_name> --keyring-backend file`)
 5. 각 노드의 키 주소 추출 및 공유
    - Validator Node에서 키 주소를 제네시스 저장소를 통해 Coordinator Node에게 전달
 6. 제네시스 파일 수정 (`uclid genesis add-genesis-account <validator_address> 20000000000000ucli --keyring-backend file`)
 7. 수정된 제네시스 파일 공유 (제네시스 저장소를 통해 `genesis.json` 공유)
 8. 제네시스 파일 확인 (`cat ~/.ucli/config/genesis.json`)
-9. `gentx` 생성 (`uclid genesis gentx <validator_name> 100000000ucli --chain-id uclid-devnet --keyring-backend file`)
+9. `gentx` 생성 (`uclid genesis gentx <validator_name> 100000000ucli --chain-id uclid-prenet --keyring-backend file`)
 10. `gentx` 파일 공유 (Validator Node에서 제네시스 저장소를 통해 `gentx` 파일 공유)
 11. `collect-gentxs` 실행 (`uclid genesis collect-gentxs --keyring-backend file`)
 12. 제네시스 파일 수정 (denom 변경, `sed -i 's/"stake"/"ucli"/g' ~/.ucli/config/genesis.json`)
@@ -124,14 +124,14 @@ ignite chain build
 **Coordinator Node:**
 
 ```sh
-uclid init coordinator-node --chain-id uclid-devnet
+uclid init coordinator-node --chain-id uclid-prenet
 uclid keys add coordinator-node --keyring-backend file
 ```
 
 **Validator Node:**
 
 ```sh
-uclid init validator-node --chain-id uclid-devnet
+uclid init validator-node --chain-id uclid-prenet
 uclid keys add validator-node --keyring-backend file
 ```
 
@@ -236,13 +236,13 @@ cat ~/.ucli/config/genesis.json
 **Coordinator Node:**
 
 ```sh
-uclid genesis gentx coordinator-node 10000000000000ucli --chain-id uclid-devnet --keyring-backend file
+uclid genesis gentx coordinator-node 10000000000000ucli --chain-id uclid-prenet --keyring-backend file
 ```
 
 **Validator Node:**
 
 ```sh
-uclid genesis gentx validator-node 10000000000000ucli --chain-id uclid-devnet --keyring-backend file
+uclid genesis gentx validator-node 10000000000000ucli --chain-id uclid-prenet --keyring-backend file
 ```
 
 #### 9. `gentx` 파일 공유
