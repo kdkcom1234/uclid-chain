@@ -242,7 +242,7 @@ uclid genesis gentx coordinator-node 20000000000000ucli --chain-id uclid-prenet 
 **Validator Node:**
 
 ```sh
-uclid genesis gentx validator-node 20000000000000ucli --chain-id uclid-prenet --keyring-backend file
+uclid genesis gentx validator-node 20000000000000ucli --chain-id uclid-prenet --keyring-backend file --commission-max-change-rate 0.000000000000000000 --commission-max-rate 0.000000000000000000 --commission-rate 0.000000000000000000
 ```
 
 #### 9. `gentx` 파일 공유
