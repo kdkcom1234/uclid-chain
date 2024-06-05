@@ -76,7 +76,7 @@ genesis:
         denom: ucli
 validators:
   - name: validator-1
-    bonded: 100000000ucli
+    bonded: 20000000000000ucli
     app:
       minimum-gas-prices: 1ucli
       api:
