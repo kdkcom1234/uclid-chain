@@ -23,12 +23,6 @@ accounts:
       - 10000000000000ucli
     mnemonic: upgrade weekend letter main drink mail elbow sausage wild pistol journey attract focus permit acoustic gap decade sound clump brand great range fine round
     # uclid1z8hm4ux2mh85dn8a9kz900jdv855a4vp6dl3kd
-  # for prove node purchase
-  - name: nexus
-    coins:
-      # 1,000,000,000 CLI
-      - 1000000000000000ucli
-    mnemonic: frost same response private best shop sea unusual crazy beyond behind spray latin cotton traffic erosion hello rate actual swarm lab harvest village fiction
 genesis:
   chain_id: uclid-prenet
   app_state:
