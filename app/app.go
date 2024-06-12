@@ -1,6 +1,7 @@
 package app
 
 import (
+	"context"
 	"io"
 	"os"
 	"path/filepath"
@@ -19,6 +20,7 @@ import (
 	_ "cosmossdk.io/x/nft/module" // import for side-effects
 	_ "cosmossdk.io/x/upgrade"    // import for side-effects
 	upgradekeeper "cosmossdk.io/x/upgrade/keeper"
+	upgradetypes "cosmossdk.io/x/upgrade/types"
 	dbm "github.com/cosmos/cosmos-db"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -349,6 +351,23 @@ func New(
 	// 	app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap())
 	// 	return app.App.InitChainer(ctx, req)
 	// })
+
+	// 업그레이드 핸들러 설정
+	app.UpgradeKeeper.SetUpgradeHandler("upgrade-1", func(ctx context.Context, plan upgradetypes.Plan, fromVM module.VersionMap) (module.VersionMap, error) {
+		// 스토어 업그레이드 로직 추가
+		return app.ModuleManager.RunMigrations(ctx, app.Configurator(), fromVM)
+	})
+
+	// StoreLoader 설정 (특정 높이에서 트리거)
+	// StoreUpgrades 정의
+	storeUpgrades := &storetypes.StoreUpgrades{
+		Added: []string{"newstore"},
+		Renamed: []storetypes.StoreRename{
+			{OldKey: "oldstore", NewKey: "newstore"},
+		},
+		Deleted: []string{"deprecatedstore"},
+	}
+	app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(1, storeUpgrades))
 
 	if err := app.Load(loadLatest); err != nil {
 		return nil, err
